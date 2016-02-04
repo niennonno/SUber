@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7380E48E1C63373200882C68 /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7380E48D1C63373200882C68 /* RiderViewController.swift */; };
+		7380E4901C63522900882C68 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7380E48F1C63522900882C68 /* CoreLocation.framework */; };
 		814C3ACA1B69877600E307BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC61B69877600E307BB /* Main.storyboard */; };
 		814C3ACB1B69877600E307BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814C3AC81B69877600E307BB /* Images.xcassets */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7380E48D1C63373200882C68 /* RiderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
+		7380E48F1C63522900882C68 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		814C3AC71B69877600E307BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		814C3AC81B69877600E307BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		814C3AC91B69877600E307BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7380E4901C63522900882C68 /* CoreLocation.framework in Frameworks */,
 				81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */,
 				81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */,
 				81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */,
@@ -65,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				81BA814C1A49DA1800E65899 /* ViewController.swift */,
+				7380E48D1C63373200882C68 /* RiderViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -110,6 +116,7 @@
 		81BA816A1A49DB5600E65899 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7380E48F1C63522900882C68 /* CoreLocation.framework */,
 				81BA816B1A49DB6800E65899 /* Bolts.framework */,
 				81BA816C1A49DB6800E65899 /* Parse.framework */,
 				81BA816E1A49DB6800E65899 /* ParseFacebookUtils.framework */,
@@ -201,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BA814D1A49DA1800E65899 /* ViewController.swift in Sources */,
+				7380E48E1C63373200882C68 /* RiderViewController.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

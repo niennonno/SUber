@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class RequestViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -26,6 +27,75 @@ class RequestViewController: UIViewController, CLLocationManagerDelegate {
     //MARK :- IBActions
     
     @IBAction func pickUpRider(sender: AnyObject) {
+        
+        let query = PFQuery(className: "riderRequest")
+        query.whereKey("username", equalTo: requestUsername)
+        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            
+            if error != nil {
+                
+                print(error)
+                
+            } else {
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                        let query = PFQuery(className: "riderRequest")
+                        query.getObjectInBackgroundWithId(object.objectId!, block: { (object, error) -> Void in
+                            
+                            if error != nil {
+                                print (error)
+                            } else if let object = object{
+                                
+                                object["driverResponded"] = PFUser.currentUser()?.username
+                                print("success")
+                                
+                                object.saveInBackground()
+                                
+                                let requestCLLocation = CLLocation(latitude: self.requestLocation.latitude, longitude: self.requestLocation.longitude)
+
+                                CLGeocoder().reverseGeocodeLocation(requestCLLocation, completionHandler: { (placemarks, error) -> Void in
+                                    
+                                    if error != nil {
+                                        print(error!)
+                                    } else {
+                                        
+                                        if placemarks?.count > 0 {
+                                            
+                                            let pm = placemarks![0] as! CLPlacemark
+                                            
+                                            let mkPm = MKPlacemark(placemark: pm)
+                                            
+                                            let mapItem = MKMapItem(placemark: mkPm)
+                                            
+                                            mapItem.name = self.requestUsername
+                                            
+                                            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                                            
+                                            mapItem.openInMapsWithLaunchOptions(launchOptions)
+
+                                        }
+                                        
+                                    }
+                                    
+                                })
+                                
+                                
+                            }
+                            
+                        })
+                    }
+                    
+                } else {
+                    
+                    print(error)
+                    
+                }
+            }
+        })
+        
     }
     
     //MARK :- Overridden Functions
@@ -36,8 +106,17 @@ class RequestViewController: UIViewController, CLLocationManagerDelegate {
         print(requestUsername)
         print(requestLocation)
         
+        let region = MKCoordinateRegion(center: requestLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        // Do any additional setup after loading the view.
+        self.map.setRegion(region, animated: true)
+        self.map.removeAnnotations(map.annotations)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = requestLocation
+        annotation.title = requestUsername
+        
+        self.map.addAnnotation(annotation)
+
     }
 
     override func didReceiveMemoryWarning() {

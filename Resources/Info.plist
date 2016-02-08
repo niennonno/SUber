@@ -10,10 +10,6 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Let me see where you are!</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Let me see where you are!</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -26,6 +22,14 @@
 	<string>1.12.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Let me see where you are!</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Let me see where you are!</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

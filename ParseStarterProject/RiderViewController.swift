@@ -61,6 +61,7 @@ class RiderViewController: UIViewController, MKMapViewDelegate,CLLocationManager
                     print(error)
                     
                 } else {
+                    
                     if let objects = objects {
                         
                         for object in objects {

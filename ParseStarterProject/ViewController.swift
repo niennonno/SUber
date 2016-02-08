@@ -72,9 +72,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                     } else {
                         
+                        if user["isRider"] as! Bool == false {
+                            
+                            self.performSegueWithIdentifier("loginDriver", sender: self)
+                            print("Driver")
+                            
+                        } else {
+                            
                         self.performSegueWithIdentifier("loginRider", sender: self)
-                    }
                     
+                        }
+                    }
                 })
             } else {
                 
@@ -82,7 +90,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     if user != nil {
                         
-                        self.performSegueWithIdentifier("loginRider", sender: self)
+                        if user!["isRider"] as! Bool == false {
+                            
+                            self.performSegueWithIdentifier("loginDriver", sender: self)
+                            print("Driver")
+                            
+                        } else {
+                            
+                            self.performSegueWithIdentifier("loginRider", sender: self)
+                            
+                        }
                         
                     } else {
                         
@@ -131,6 +148,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.username.delegate = self
         self.password.delegate = self
+        self.navigationController?.navigationBarHidden = true
         
     }
     
@@ -145,10 +163,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         
-        if PFUser.currentUser()?.username != nil {
-            
-            performSegueWithIdentifier("loginRider", sender: self)
+        let user = PFUser.currentUser()
         
+        if user!.username != nil {
+            
+            if user!["isRider"] as! Bool == true {
+                performSegueWithIdentifier("loginRider", sender: self)
+            } else {
+                performSegueWithIdentifier("loginDriver", sender: self)
+            }
         }
     }
     
